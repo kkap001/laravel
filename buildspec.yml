@@ -23,8 +23,8 @@ phases:
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
-      - aws eks --region ap-south-1 update-kubeconfig --name laravel --role-arn arn:aws:iam::228431726353:role/ekslaravel
-      - export KUBECONFIG=$HOME/.kube/config 
+      - aws eks --region ap-south-1 update-kubeconfig --name laravel
+      - kubectl create -f deployment.yaml
   build:
     commands:
       - echo Entered the build phase...
